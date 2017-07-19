@@ -1,0 +1,210 @@
+\ProvidesPackage{beamerthemeaizu}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{textpos}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{listings}
+\usepackage{color} 
+\usepackage{graphicx}
+\usepackage{amsmath}  
+\usepackage[vlined,linesnumbered,titlenotnumbered]{algorithm2e}
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{pgfpages}
+\usepackage{pdfpages}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\setbeamertemplate{note page}[plain]
+
+\newcounter{cont}
+
+\makeatletter
+
+\setbeamertemplate{frametitle continuation}{%
+    \setcounter{cont}{\beamer@endpageofframe}%
+    \addtocounter{cont}{1}%
+    \addtocounter{cont}{-\beamer@startpageofframe}%
+    (\insertcontinuationcount/\arabic{cont})%
+}
+\makeatother
+
+\newcommand\Wider[2][3em]{%
+    \makebox[\linewidth][c]{%
+        \begin{minipage}{\dimexpr\textwidth+#1\relax}
+            \raggedright#2
+        \end{minipage}%
+    }%
+}
+
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{bibliography item}[text]
+\mode<presentation> {
+    \usetheme{default}
+    \setbeamertemplate{navigation symbols}{} 
+}
+%
+\definecolor{maincolor}{rgb}{0.21,0.05,0.65}
+\definecolor{maindcolor}{rgb}{0.1,0.05,0.45}
+\definecolor{offwhite}{RGB}{245,240,240}
+\definecolor{gray}{RGB}{155,155,155}
+
+\definecolor{italicolor}{RGB}{55,130,188}
+\definecolor{lolit}{RGB}{211,88,88}
+
+\usecolortheme[rgb={0.21,0.05,0.65}]{structure}
+\usefonttheme{professionalfonts}
+\usefonttheme{serif}
+\usepackage{fontspec}
+
+\setmainfont{TeXGyreHeros-Regular}
+\usepackage{sansmath} 
+\sansmath 
+
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{\textcolor{maincolor}{\oldtextbf{#1}}}
+\let\oldtextit\textit
+\renewcommand{\textit}[1]{\textcolor{italicolor}{\oldtextit{#1}}}
+
+\setbeamerfont{note page}{family*=pplx,size=\footnotesize} % Palatino for notes
+
+
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{section in toc}[circle]   
+\setbeamerfont{date}{size={\fontsize{8}{16}}}
+\setbeamerfont{institute}{size={\fontsize{9}{14}}}
+\setbeamerfont{title}{size={\fontsize{13}{15}}}
+\setbeamerfont{author}{size={\fontsize{11}{15}}}
+\setbeamercolor{title}{fg=white,bg=maincolor}
+
+\let\oldcite=\cite                                                              
+\renewcommand{\cite}[1]{\textcolor[RGB]{28,172,0}{\oldcite{#1}}}
+
+\renewcommand\textbullet{\ensuremath{\bullet}}
+
+\setbeamerfont{caption}{size=\scriptsize}
+\usepackage{etoolbox,caption}
+
+\setbeamertemplate{title page}
+{
+    \vbox{}
+    \vfill
+    \begin{centering}
+        %        \begin{beamercolorbox}[sep=2pt,center]{institute}
+        %            Doctoral Dissertation Final Review
+        %        \end{beamercolorbox}
+        \begin{beamercolorbox}[rounded=true,shadow=true,sep=3pt,center]{title}
+            \usebeamerfont{title}\inserttitle
+        \end{beamercolorbox}
+        
+        \vskip0.5em\par
+        \begin{beamercolorbox}[sep=8pt,center]{author}
+            \usebeamerfont{author}\insertauthor
+        \end{beamercolorbox}
+        \vskip-1em\par % change here
+        \begin{beamercolorbox}[sep=8pt,center]{institute}
+            \usebeamerfont{institute}\insertinstitute
+        \end{beamercolorbox}
+        {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+        \begin{beamercolorbox}[sep=8pt,center]{date}
+            \usebeamerfont{date}\insertdate
+        \end{beamercolorbox}\vskip0.5em
+        
+    \end{centering}
+    \vfill
+}  
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+        \node[shape=circle,draw=none,inner sep=1pt,text=white, fill=maindcolor] (char) {#1};}}
+% page number
+\setbeamertemplate{footline}{%
+    \raisebox{5pt}{\makebox[\paperwidth]{\hfill\makebox[20pt]{
+                \scriptsize{\textbf{\insertframenumber}}}}}\hspace*{5pt}
+}
+
+\makeatletter 
+\def\beamer@framenotesbegin{
+    \usebeamercolor[fg]{normal text}
+    \gdef\beamer@noteitems{}% 
+    \gdef\beamer@notes{}% 
+}
+\makeatother
+
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{fit}
+\usetikzlibrary{shapes.callouts,decorations.pathmorphing}
+\usetikzlibrary{matrix}
+\usetikzlibrary{shadows}
+\usetikzlibrary{arrows,calc,intersections}
+
+\tikzset{
+    vertex/.style = {
+        circle,
+        fill            = black,
+        outer sep = 2pt,
+        inner sep = 1pt,
+    },
+    boxnode/.style = {align=center,draw}
+}
+\tikzstyle{arrow}=[draw, -latex,solid,line width=0.5pt]
+
+\newcommand\tikzmark[1]{%
+    \tikz[overlay,remember picture,baseline] \coordinate (#1);}
+
+
+\newcommand*\mytransboxpopup[5]{
+    \uncover<#5>{
+        \begin{tikzpicture}[overlay,remember picture]
+        \pgftransformshift{\pgfpointanchor{current page}{center}}
+        \draw[draw=lolit, thick, rounded corners] (#1,#2) rectangle (#3,#4);
+        
+        \end{tikzpicture}
+    }
+}
+\newcommand*\mypopup[4]{
+    \uncover<#4>{
+        \begin{tikzpicture}[overlay,remember picture]
+        \pgftransformshift{\pgfpointanchor{current page}{center}}
+        \node[
+        draw=lolit,
+        rounded corners,
+        thick,
+        fill=offwhite,
+        drop shadow,
+        text width=0.5\textwidth
+        ] at (#2,#3) { {#1}};
+        \end{tikzpicture}
+    }
+    
+}
+\newcommand*\mypopupsize[5]{
+    \uncover<#4>{
+        \begin{tikzpicture}[overlay,remember picture]
+        \pgftransformshift{\pgfpointanchor{current page}{center}}
+        \node[
+        draw=lolit,
+        thick,
+        rounded corners,
+        fill=offwhite,
+        drop shadow,
+        text width=#5\textwidth
+        ] at (#2,#3) { {#1}};
+        \end{tikzpicture}
+    }
+
+}
+
+
+
+%\usepackage{xeCJK}
+%\setCJKmainfont{Noto Sans CJK JP Regular} % for \rmfamily
+%\setCJKsansfont{MS Gothic} % for \sffamily
